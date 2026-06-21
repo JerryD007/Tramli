@@ -4,65 +4,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>JERRY Home</title>
+  <title>HOME</title>
   <style>
-    :root{
-      --bg:#050505;--panel:#101010;--fg:#f7f7f7;--muted:#9a9a9a;
-      --line:#252525;--red:#e30613;--warn:#ffcc66;
-    }
+    :root{--bg:#050505;--panel:#101010;--fg:#f7f7f7;--muted:#9a9a9a;--line:#252525;--red:#e30613;--warn:#ffcc66}
     *{box-sizing:border-box}
-    body{
-      margin:0;background:var(--bg);color:var(--fg);
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-      min-height:100vh;overflow:hidden;
-    }
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;min-height:100vh;overflow:hidden}
     .app{height:100vh;padding:18px;display:grid;grid-template-rows:auto 1fr auto;gap:14px}
-    header{
-      display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;
-      border-bottom:2px solid var(--line);padding-bottom:12px;
-    }
-    .logo{
-      background:var(--red);color:#000;font-weight:950;font-size:clamp(28px,4.4vw,60px);
-      padding:10px 22px;border-radius:18px;border:6px solid #000;letter-spacing:-.04em;
-      white-space:nowrap;
-    }
-    .weather{text-align:right;font-weight:850;font-size:clamp(20px,3vw,44px)}
-    .clock{text-align:right;font-weight:950;font-size:clamp(34px,5vw,76px);letter-spacing:-.05em}
-    main{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:14px;min-height:0}
-    section{
-      background:var(--panel);border:1px solid var(--line);border-radius:18px;
-      padding:16px;min-height:0;overflow:hidden;
-    }
-    h2{
-      margin:0 0 12px;font-size:clamp(22px,2.8vw,42px);text-transform:uppercase;
-      letter-spacing:-.03em;border-bottom:1px solid var(--line);padding-bottom:10px;
-    }
-    .row{
-      display:grid;grid-template-columns:minmax(46px,.7fr) minmax(0,2.6fr) minmax(70px,.9fr);
-      align-items:center;gap:12px;border-bottom:1px solid var(--line);padding:12px 0;
-      min-height:72px;
-    }
-    .line{font-size:clamp(30px,4vw,64px);font-weight:950;letter-spacing:-.06em}
-    .dest{min-width:0}
-    .to{font-size:clamp(22px,3vw,46px);font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .type{font-size:clamp(12px,1.5vw,22px);color:var(--muted);margin-top:4px}
-    .min{text-align:right;font-size:clamp(30px,4vw,64px);font-weight:950;letter-spacing:-.06em}
-    .min small{display:block;color:var(--muted);font-size:clamp(11px,1.4vw,18px);letter-spacing:0}
-    footer{
-      display:flex;justify-content:space-between;color:var(--muted);font-size:clamp(12px,1.3vw,18px);
-      border-top:1px solid var(--line);padding-top:8px;
-    }
-    .error{color:var(--warn);font-size:20px;padding:16px 0;line-height:1.35}
-    @media (max-width:900px){
-      body{overflow:auto}.app{height:auto;min-height:100vh}
-      main{grid-template-columns:1fr}
-    }
+    header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;border-bottom:2px solid var(--line);padding-bottom:12px}
+    .logo{background:var(--red);color:#000;font-weight:950;font-size:clamp(36px,5vw,76px);padding:10px 30px;border-radius:18px;border:6px solid #000;letter-spacing:-.04em;text-transform:uppercase}
+    .clock{text-align:right;font-weight:950;font-size:clamp(42px,6vw,88px);letter-spacing:-.05em}
+    .weather{text-align:right;font-weight:850;font-size:clamp(22px,3vw,46px)}
+    main{min-height:0;overflow:hidden;display:grid;grid-template-columns:1fr;gap:12px}
+    section{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 18px;overflow:hidden}
+    h2{margin:0 0 8px;font-size:clamp(26px,3.2vw,50px);text-transform:uppercase;letter-spacing:-.03em;border-bottom:1px solid var(--line);padding-bottom:8px}
+    .row{display:grid;grid-template-columns:90px 1fr 120px;align-items:center;gap:16px;border-bottom:1px solid var(--line);padding:8px 0;min-height:54px}
+    .line{font-size:clamp(30px,4.2vw,62px);font-weight:950;letter-spacing:-.06em}
+    .to{font-size:clamp(26px,3.6vw,56px);font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .min{text-align:right;font-size:clamp(30px,4.2vw,62px);font-weight:950;letter-spacing:-.06em}
+    .min small{font-size:clamp(12px,1.4vw,20px);color:var(--muted);letter-spacing:0}
+    footer{display:flex;justify-content:space-between;color:var(--muted);font-size:clamp(13px,1.4vw,20px);border-top:1px solid var(--line);padding-top:8px}
+    .error{color:var(--warn);font-size:22px;padding:12px 0}
+    @media (max-width:900px){body{overflow:auto}.app{height:auto;min-height:100vh}}
   </style>
 </head>
 <body>
 <div class="app">
   <header>
-    <div class="logo">JERRY Home</div>
+    <div class="logo">HOME</div>
     <div></div>
     <div>
       <div class="clock" id="clock">--:--</div>
@@ -72,7 +40,7 @@
 
   <main>
     <section>
-      <h2>🚋 Bern Ostring</h2>
+      <h2>🚋 Ostring</h2>
       <div id="ostring"></div>
     </section>
 
@@ -82,29 +50,28 @@
     </section>
 
     <section>
-      <h2>🚆 Bern HB</h2>
-      <div id="bern"></div>
+      <h2>🚆 Bern → Burgdorf</h2>
+      <div id="bern_burgdorf"></div>
+    </section>
+
+    <section>
+      <h2>🚆 Burgdorf → Bern</h2>
+      <div id="burgdorf_bern"></div>
     </section>
   </main>
 
   <footer>
-    <span>Live · Bernmobil · SBB</span>
+    <span>Live</span>
     <span id="updated">--</span>
   </footer>
 </div>
 
 <script>
 const REFRESH_MS = 60000;
-const stations = [
-  {id:"ostring", name:"Bern, Ostring", limit:5},
-  {id:"giacometti", name:"Bern, Giacomettistrasse", limit:5},
-  {id:"bern", name:"Bern", limit:6}
-];
 
 function updateClock(){
-  const now = new Date();
   document.getElementById("clock").textContent =
-    now.toLocaleTimeString("de-CH",{hour:"2-digit",minute:"2-digit"});
+    new Date().toLocaleTimeString("de-CH",{hour:"2-digit",minute:"2-digit"});
 }
 
 function minUntil(iso){
@@ -113,38 +80,66 @@ function minUntil(iso){
   return Math.max(0, diff);
 }
 
-function label(item){
-  return (item.number || item.category || "?").toString();
+function cleanTo(to){
+  if(!to) return "";
+  return to.replace(/^Bern,\s*/i,"").replace(/^Burgdorf,\s*/i,"");
 }
 
-async function loadStation(st){
-  const el = document.getElementById(st.id);
-  const url = "https://transport.opendata.ch/v1/stationboard?station=" +
-    encodeURIComponent(st.name) + "&limit=" + encodeURIComponent(st.limit);
+function rowHtml(item){
+  const stop = item.stop || {};
+  const line = (item.number || item.category || "?").toString();
+  const dest = cleanTo(item.to || "");
+  return `<div class="row">
+    <div class="line">${line}</div>
+    <div class="to">R ${dest}</div>
+    <div class="min">${minUntil(stop.departure)} <small>Min</small></div>
+  </div>`;
+}
 
+async function stationboard(station, limit=20){
+  const url = "https://transport.opendata.ch/v1/stationboard?station=" + encodeURIComponent(station) + "&limit=" + limit;
+  const res = await fetch(url);
+  if(!res.ok) throw new Error(res.status);
+  const data = await res.json();
+  return data.stationboard || [];
+}
+
+async function connections(from, to, limit=6){
+  const url = "https://transport.opendata.ch/v1/connections?from=" + encodeURIComponent(from) + "&to=" + encodeURIComponent(to) + "&limit=" + limit;
+  const res = await fetch(url);
+  if(!res.ok) throw new Error(res.status);
+  const data = await res.json();
+  return data.connections || [];
+}
+
+async function loadFilteredStop(elId, station, allowedLines, limitOut){
+  const el = document.getElementById(elId);
   try{
-    const res = await fetch(url);
-    if(!res.ok) throw new Error(res.status);
-    const data = await res.json();
-    const rows = data.stationboard || [];
-    if(!rows.length){
-      el.innerHTML = '<div class="error">Keine Abfahrten gefunden.</div>';
-      return;
-    }
+    const rows = await stationboard(station, 20);
+    const filtered = rows.filter(x => allowedLines.includes((x.number || "").toString())).slice(0, limitOut);
+    el.innerHTML = filtered.length ? filtered.map(rowHtml).join("") : '<div class="error">Keine passenden Abfahrten.</div>';
+  }catch(e){
+    el.innerHTML = '<div class="error">Daten konnten nicht geladen werden.</div>';
+  }
+}
 
-    el.innerHTML = rows.map(item => {
-      const stop = item.stop || {};
-      const delay = stop.delay ? Math.round(stop.delay / 60) : 0;
-      const sub = delay > 0 ? "Verspätung +" + delay + " Min" : (item.category || "");
-      return `<div class="row">
-        <div class="line">${label(item)}</div>
-        <div class="dest">
-          <div class="to">${item.to || ""}</div>
-          <div class="type">${sub}</div>
-        </div>
-        <div class="min">${minUntil(stop.departure)}<small>Min</small></div>
-      </div>`;
-    }).join("");
+function trainRowHtml(c, target){
+  const dep = c.from && c.from.departure;
+  let line = "Zug";
+  if(c.products && c.products.length) line = c.products[0];
+  return `<div class="row">
+    <div class="line">${line}</div>
+    <div class="to">R ${target}</div>
+    <div class="min">${minUntil(dep)} <small>Min</small></div>
+  </div>`;
+}
+
+async function loadDirectTrains(elId, from, to, label){
+  const el = document.getElementById(elId);
+  try{
+    const rows = await connections(from, to, 8);
+    const direct = rows.filter(c => (c.transfers === 0 || c.transfers === "0")).slice(0, 3);
+    el.innerHTML = direct.length ? direct.map(c => trainRowHtml(c, label)).join("") : '<div class="error">Keine direkten Züge.</div>';
   }catch(e){
     el.innerHTML = '<div class="error">Daten konnten nicht geladen werden.</div>';
   }
@@ -173,7 +168,12 @@ async function loadWeather(){
 async function refreshAll(){
   updateClock();
   loadWeather();
-  await Promise.all(stations.map(loadStation));
+  await Promise.all([
+    loadFilteredStop("ostring", "Bern, Ostring", ["7","40"], 4),
+    loadFilteredStop("giacometti", "Bern, Giacomettistrasse", ["28"], 3),
+    loadDirectTrains("bern_burgdorf", "Bern", "Burgdorf", "Burgdorf"),
+    loadDirectTrains("burgdorf_bern", "Burgdorf", "Bern", "Bern")
+  ]);
   document.getElementById("updated").textContent =
     "Aktualisiert " + new Date().toLocaleTimeString("de-CH",{hour:"2-digit",minute:"2-digit"});
 }
