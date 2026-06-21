@@ -1,159 +1,187 @@
-index.html
-<html lang="cs">
+
+<!doctype html>
+<html lang="de">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Odjezdy MHD</title>
+  <title>JERRY Home</title>
   <style>
-    :root { --bg:#050505; --fg:#f4f4f4; --muted:#9b9b9b; --line:#242424; --warn:#ffcc66; }
-    * { box-sizing: border-box; }
-    body { margin:0; background:var(--bg); color:var(--fg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; min-height:100vh; overflow:hidden; }
-    .screen { padding:22px 20px 18px; height:100vh; display:flex; flex-direction:column; }
-    header { display:flex; justify-content:space-between; gap:16px; align-items:flex-start; border-bottom:2px solid var(--line); padding-bottom:14px; margin-bottom:8px; }
-    h1 { font-size:clamp(24px,7vw,56px); line-height:1; margin:0; letter-spacing:-0.04em; text-transform:uppercase; }
-    .time { font-size:clamp(18px,5vw,42px); font-weight:700; white-space:nowrap; }
-    .sub { color:var(--muted); font-size:clamp(13px,3.5vw,24px); margin-top:6px; }
-    .board { flex:1; overflow:hidden; }
-    .row { display:grid; grid-template-columns:minmax(50px,0.9fr) minmax(0,3.2fr) minmax(58px,0.9fr); gap:10px; align-items:center; padding:13px 0; border-bottom:1px solid var(--line); min-height:70px; }
-    .num { font-size:clamp(24px,8vw,64px); font-weight:900; letter-spacing:-0.05em; }
-    .dest { min-width:0; }
-    .to { font-size:clamp(18px,5.5vw,44px); font-weight:750; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .type { color:var(--muted); margin-top:3px; font-size:clamp(12px,3.5vw,20px); }
-    .min { text-align:right; font-size:clamp(24px,7.5vw,58px); font-weight:900; letter-spacing:-0.05em; }
-    .min small { display:block; color:var(--muted); font-size:clamp(10px,2.7vw,18px); letter-spacing:0; font-weight:700; }
-    footer { color:var(--muted); font-size:13px; padding-top:8px; display:flex; justify-content:space-between; gap:12px; border-top:1px solid var(--line); }
-    .error { padding:30px 0; color:var(--warn); font-size:20px; line-height:1.4; }
-    .config { position:fixed; inset:0; background:#111; color:white; display:none; padding:24px; z-index:10; }
-    .config.show { display:block; }
-    input, button { width:100%; font-size:20px; padding:14px; border-radius:12px; border:1px solid #444; margin:8px 0 14px; }
-    button { background:white; color:black; font-weight:800; }
-    label { color:#bbb; }
+    :root{
+      --bg:#050505;--panel:#101010;--fg:#f7f7f7;--muted:#9a9a9a;
+      --line:#252525;--red:#e30613;--warn:#ffcc66;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;background:var(--bg);color:var(--fg);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      min-height:100vh;overflow:hidden;
+    }
+    .app{height:100vh;padding:18px;display:grid;grid-template-rows:auto 1fr auto;gap:14px}
+    header{
+      display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;
+      border-bottom:2px solid var(--line);padding-bottom:12px;
+    }
+    .logo{
+      background:var(--red);color:#000;font-weight:950;font-size:clamp(28px,4.4vw,60px);
+      padding:10px 22px;border-radius:18px;border:6px solid #000;letter-spacing:-.04em;
+      white-space:nowrap;
+    }
+    .weather{text-align:right;font-weight:850;font-size:clamp(20px,3vw,44px)}
+    .clock{text-align:right;font-weight:950;font-size:clamp(34px,5vw,76px);letter-spacing:-.05em}
+    main{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:14px;min-height:0}
+    section{
+      background:var(--panel);border:1px solid var(--line);border-radius:18px;
+      padding:16px;min-height:0;overflow:hidden;
+    }
+    h2{
+      margin:0 0 12px;font-size:clamp(22px,2.8vw,42px);text-transform:uppercase;
+      letter-spacing:-.03em;border-bottom:1px solid var(--line);padding-bottom:10px;
+    }
+    .row{
+      display:grid;grid-template-columns:minmax(46px,.7fr) minmax(0,2.6fr) minmax(70px,.9fr);
+      align-items:center;gap:12px;border-bottom:1px solid var(--line);padding:12px 0;
+      min-height:72px;
+    }
+    .line{font-size:clamp(30px,4vw,64px);font-weight:950;letter-spacing:-.06em}
+    .dest{min-width:0}
+    .to{font-size:clamp(22px,3vw,46px);font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .type{font-size:clamp(12px,1.5vw,22px);color:var(--muted);margin-top:4px}
+    .min{text-align:right;font-size:clamp(30px,4vw,64px);font-weight:950;letter-spacing:-.06em}
+    .min small{display:block;color:var(--muted);font-size:clamp(11px,1.4vw,18px);letter-spacing:0}
+    footer{
+      display:flex;justify-content:space-between;color:var(--muted);font-size:clamp(12px,1.3vw,18px);
+      border-top:1px solid var(--line);padding-top:8px;
+    }
+    .error{color:var(--warn);font-size:20px;padding:16px 0;line-height:1.35}
+    @media (max-width:900px){
+      body{overflow:auto}.app{height:auto;min-height:100vh}
+      main{grid-template-columns:1fr}
+    }
   </style>
 </head>
 <body>
-  <div class="screen" onclick="tapConfig()">
-    <header>
-      <div>
-        <h1 id="stationTitle">Odjezdy</h1>
-        <div class="sub" id="status">Načítám…</div>
-      </div>
-      <div class="time" id="clock">--:--</div>
-    </header>
-    <main class="board" id="board"></main>
-    <footer>
-      <span>transport.opendata.ch</span>
-      <span id="updated">--</span>
-    </footer>
-  </div>
+<div class="app">
+  <header>
+    <div class="logo">JERRY Home</div>
+    <div></div>
+    <div>
+      <div class="clock" id="clock">--:--</div>
+      <div class="weather" id="weather">Bern · --°C</div>
+    </div>
+  </header>
 
-  <div class="config" id="config">
-    <h2>Nastavení</h2>
-    <label>Zastávka / stanice</label>
-    <input id="stationInput" placeholder="např. Zürich HB">
-    <label>Počet odjezdů</label>
-    <input id="limitInput" type="number" min="3" max="12" value="7">
-    <button onclick="saveConfig()">Uložit</button>
-    <button onclick="hideConfig()">Zavřít</button>
-    <p style="color:#aaa">Tip: klepni 5× na obrazovku pro otevření nastavení.</p>
-  </div>
+  <main>
+    <section>
+      <h2>🚋 Bern Ostring</h2>
+      <div id="ostring"></div>
+    </section>
 
-  <script>
-    let station = new URLSearchParams(location.search).get("station") || localStorage.getItem("station") || "Zürich HB";
-    let limit = Number(localStorage.getItem("limit") || 7);
-    let taps = 0;
-    let tapTimer = null;
+    <section>
+      <h2>🚌 Giacomettistrasse</h2>
+      <div id="giacometti"></div>
+    </section>
 
-    const board = document.getElementById("board");
-    const title = document.getElementById("stationTitle");
-    const statusEl = document.getElementById("status");
-    const updated = document.getElementById("updated");
-    const clock = document.getElementById("clock");
+    <section>
+      <h2>🚆 Bern HB</h2>
+      <div id="bern"></div>
+    </section>
+  </main>
 
-    function updateClock() {
-      const now = new Date();
-      clock.textContent = now.toLocaleTimeString("de-CH", {hour:"2-digit", minute:"2-digit"});
+  <footer>
+    <span>Live · Bernmobil · SBB</span>
+    <span id="updated">--</span>
+  </footer>
+</div>
+
+<script>
+const REFRESH_MS = 60000;
+const stations = [
+  {id:"ostring", name:"Bern, Ostring", limit:5},
+  {id:"giacometti", name:"Bern, Giacomettistrasse", limit:5},
+  {id:"bern", name:"Bern", limit:6}
+];
+
+function updateClock(){
+  const now = new Date();
+  document.getElementById("clock").textContent =
+    now.toLocaleTimeString("de-CH",{hour:"2-digit",minute:"2-digit"});
+}
+
+function minUntil(iso){
+  if(!iso) return "";
+  const diff = Math.round((new Date(iso).getTime() - Date.now()) / 60000);
+  return Math.max(0, diff);
+}
+
+function label(item){
+  return (item.number || item.category || "?").toString();
+}
+
+async function loadStation(st){
+  const el = document.getElementById(st.id);
+  const url = "https://transport.opendata.ch/v1/stationboard?station=" +
+    encodeURIComponent(st.name) + "&limit=" + encodeURIComponent(st.limit);
+
+  try{
+    const res = await fetch(url);
+    if(!res.ok) throw new Error(res.status);
+    const data = await res.json();
+    const rows = data.stationboard || [];
+    if(!rows.length){
+      el.innerHTML = '<div class="error">Keine Abfahrten gefunden.</div>';
+      return;
     }
 
-    function minsUntil(iso) {
-      if (!iso) return "";
-      const diff = Math.round((new Date(iso).getTime() - Date.now()) / 60000);
-      return Math.max(0, diff);
-    }
+    el.innerHTML = rows.map(item => {
+      const stop = item.stop || {};
+      const delay = stop.delay ? Math.round(stop.delay / 60) : 0;
+      const sub = delay > 0 ? "Verspätung +" + delay + " Min" : (item.category || "");
+      return `<div class="row">
+        <div class="line">${label(item)}</div>
+        <div class="dest">
+          <div class="to">${item.to || ""}</div>
+          <div class="type">${sub}</div>
+        </div>
+        <div class="min">${minUntil(stop.departure)}<small>Min</small></div>
+      </div>`;
+    }).join("");
+  }catch(e){
+    el.innerHTML = '<div class="error">Daten konnten nicht geladen werden.</div>';
+  }
+}
 
-    function vehicleLabel(item) {
-      const cat = item.category || "";
-      const num = item.number || "";
-      return (num || cat || "?").toString();
-    }
+async function loadWeather(){
+  try{
+    const url = "https://api.open-meteo.com/v1/forecast?latitude=46.9481&longitude=7.4474&current=temperature_2m,weather_code&timezone=Europe%2FZurich";
+    const res = await fetch(url);
+    const data = await res.json();
+    const temp = Math.round(data.current.temperature_2m);
+    const code = data.current.weather_code;
+    let icon = "☀️";
+    if([1,2,3].includes(code)) icon = "⛅";
+    if(code >= 45 && code <= 48) icon = "🌫️";
+    if(code >= 51 && code <= 67) icon = "🌧️";
+    if(code >= 71 && code <= 77) icon = "❄️";
+    if(code >= 80 && code <= 82) icon = "🌦️";
+    if(code >= 95) icon = "⛈️";
+    document.getElementById("weather").textContent = `Bern · ${temp}°C ${icon}`;
+  }catch(e){
+    document.getElementById("weather").textContent = "Bern · Wetter --";
+  }
+}
 
-    async function loadBoard() {
-      title.textContent = station;
-      statusEl.textContent = "Aktualizuji…";
-      const url = "https://transport.opendata.ch/v1/stationboard?station=" + encodeURIComponent(station) + "&limit=" + encodeURIComponent(limit);
+async function refreshAll(){
+  updateClock();
+  loadWeather();
+  await Promise.all(stations.map(loadStation));
+  document.getElementById("updated").textContent =
+    "Aktualisiert " + new Date().toLocaleTimeString("de-CH",{hour:"2-digit",minute:"2-digit"});
+}
 
-      try {
-        const res = await fetch(url);
-        if (!res.ok) throw new Error("API chyba: " + res.status);
-        const data = await res.json();
-        const rows = data.stationboard || [];
-
-        if (!rows.length) {
-          board.innerHTML = '<div class="error">Nenašel jsem žádné odjezdy. Zkontroluj název zastávky.</div>';
-          statusEl.textContent = "Bez výsledků";
-          return;
-        }
-
-        board.innerHTML = rows.map(item => {
-          const stop = item.stop || {};
-          const m = minsUntil(stop.departure);
-          const delay = stop.delay ? Math.round(stop.delay / 60) : 0;
-          const delayTxt = delay > 0 ? `Zpoždění +${delay} min` : (item.category || "");
-          return `<div class="row">
-            <div class="num">${vehicleLabel(item)}</div>
-            <div class="dest">
-              <div class="to">${item.to || ""}</div>
-              <div class="type">${delayTxt}</div>
-            </div>
-            <div class="min">${m}<small>min</small></div>
-          </div>`;
-        }).join("");
-
-        const now = new Date();
-        statusEl.textContent = "Online";
-        updated.textContent = "Aktualizováno " + now.toLocaleTimeString("de-CH", {hour:"2-digit", minute:"2-digit"});
-      } catch (e) {
-        board.innerHTML = '<div class="error">Nepodařilo se načíst data. Zkontroluj Wi‑Fi nebo název zastávky.</div>';
-        statusEl.textContent = "Chyba";
-      }
-    }
-
-    function tapConfig() {
-      taps++;
-      clearTimeout(tapTimer);
-      tapTimer = setTimeout(() => taps = 0, 1500);
-      if (taps >= 5) {
-        taps = 0;
-        document.getElementById("stationInput").value = station;
-        document.getElementById("limitInput").value = limit;
-        document.getElementById("config").classList.add("show");
-      }
-    }
-
-    function hideConfig() { document.getElementById("config").classList.remove("show"); }
-
-    function saveConfig() {
-      station = document.getElementById("stationInput").value.trim() || "Zürich HB";
-      limit = Math.min(12, Math.max(3, Number(document.getElementById("limitInput").value || 7)));
-      localStorage.setItem("station", station);
-      localStorage.setItem("limit", limit);
-      hideConfig();
-      loadBoard();
-    }
-
-    updateClock();
-    loadBoard();
-    setInterval(updateClock, 1000);
-    setInterval(loadBoard, 60000);
-  </script>
+updateClock();
+refreshAll();
+setInterval(updateClock, 1000);
+setInterval(refreshAll, REFRESH_MS);
+</script>
 </body>
 </html>
